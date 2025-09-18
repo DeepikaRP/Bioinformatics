@@ -1,2 +1,3 @@
-# Bioinfo-learning
-This file contains a bunch of codes that i have used for several computational processes using Biological data.
+# NGS analysis
+This repository contains bunch of codes for NGS analysis
+
