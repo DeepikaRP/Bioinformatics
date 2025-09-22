@@ -59,25 +59,3 @@ sed '/^[^#]/s/NODE_[0-9]\+_length_[0-9]\+_cov_[0-9.]\+/Chromosome/g' snps.vcf > 
 
 #Annotate VCF file
 snpEff Escherichia_coli_str_k_12_substr_mg1655 -s stats.html modified_snps.vcf  -o vcf > snp_ann.vcf
-
-
-
-
-###### PLOT VARIANT COUNTS USING R ######
-
-#Load libraries
-library(dplyr)
-library(tidyverse)
-
-#Create new column containing variants
-modified <- modified %>%
-mutate(variants = paste(modified$REF, ">", modified$ALT ))
-
-#Counts the variants
-modified <- modified %>%
-group_by(variants) %>%
-summarize(count = n())
-
-#Plot boxplot 
-barplot_2 <- barplot(counts$count, las=2, ylim = c(0, max(counts$count)+50), names.arg = counts$variants, xlab="Variants", ylab="Counts")
-text(x = barplot, y = counts$count, label = counts$count, pos = 3, cex = 0.8, col = "blue")
